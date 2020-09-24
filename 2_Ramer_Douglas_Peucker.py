@@ -2,6 +2,9 @@ import math
 
 data = [(0,1),(1,1),(-1,2),(1,2),(3,3)]
 
+
+print(-2/-1)
+
 def checkDistance(data, point, start_idx, end_idx): 
   # start = data[0]   (a,b)
   start = data[start_idx]    # (x_0, y_0)
