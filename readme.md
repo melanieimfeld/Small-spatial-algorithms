@@ -1,4 +1,5 @@
 # Algorithms toolbox
+Your everyday spatial algorithm.
 
 ## Ramer-Douglas-Peucker Line Simplification
 ### What do we need it for and how does it work?
@@ -11,13 +12,12 @@ If the point is nearer from the baseline than epsilon, then all the points along
 
 The output will be an array containing only those points that were marked as kept. 
 
-### Step 1) Getting the distance between baseline and furthest point `checkdistance()
-
+### Step 1) Getting the distance between baseline and furthest point `checkdistance()`
 First, we need to find the function for the baseline, which is defined by:  
 ` y = mx + b `
 
 We can find the slope m by subtracting x_start from x_end and y_start from y_end and dividing the resulting distances:  
-`m = (x_start - x_end) / (y_start - y_end)`
+`m = (y_end - y_start) / (x_end - x_start)`
 
 From that, we'll be able to derive `b` by simply plugging in `m`, `x` or `x_start`, and `y` or `y_start`:  
 `b = y - mx` -> `b = y_start - m * x_start`
@@ -26,15 +26,29 @@ Next, we'll have to transform the slope intercept notation of our baseline to th
 y = mx + b -> 0 = mx - (1)y - b
 
 Therefore:  
-m = a  
+`m = a  
 b = -1  
-c = -b  
+c = -b`  
 
-We can then use the following formula to get the distance between a line and a point. 
+We can then use the following formula to get the distance between a line and a point.  
 `d = abs(a * x_point - b * y_point + c / sqrt(a^2 + b^2)`
 
 
-### Step 1) Getting the distance between baseline and furthest point
+### Step 2) Implementing the algorithm
 
-## Hausdorff Distance between curves
+Iterate through the points, except first and last one
+for each point checkdistance between baseline and point -> checkdistance
+if distance > epsilon
+else distance < epsilon
+
+
+## Hausdorff Distance between polygons
+### What do we need it for and how does it work?
+The Hausdorff distance is concerned with the fact, that two polygons that are considered "near" means that all their vertices (points) are near, rather than just looking at the two nearest points between two polygons. Unlike the "shortest path distance", the "nearness" in Hausdorff considers the entire polygon. Hausdorff distance is the «maximum distance of a set to the nearest point in the other set». It can be used in computer vision, e.g to find similar items.
+
+### Step 1) Implementing the algorithm
+
+
 ## Rtrees
+## Convex Hull
+https://github.com/VictorDavis/GeoConvexHull

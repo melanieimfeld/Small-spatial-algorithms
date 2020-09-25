@@ -53,3 +53,37 @@ def RDP(data, epsilon, start_idx, end_idx):
 
 
 RDP(data, 1, 0, len(data))
+
+
+def checkDistance(data, point, start_idx, end_idx): 
+  
+##### LINE 1
+  # start = data[0]   (a,b)
+  start = data[start_idx]    # (x_0, y_0)
+  end = data[end_idx-1]     # (x_1, y_1)
+
+  #getting m
+  m = (end[1] - start[1]) / (end[0] - start[0])
+
+  # Plug in y, x, m to calculate b    -> y = mx + b -> y - mx = b
+  b = start[1] - m * start[0]
+
+  #slope intercept to standard form
+  
+
+
+#### LINE 2
+  m2 = -(1/m)
+
+  b = point[0] - m2 * point[1]
+
+### find point on baseline perpendicular
+# -------------
+  a = m 
+  b = -1 
+  c = b 
+  
+  d = abs(a * point[0] + b * point[1] + c) / math.sqrt(a**2 + b**2)
+
+  return d
+
