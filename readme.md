@@ -28,7 +28,7 @@ We can then use the following formula to get the distance between a line and a p
 ### Step 2) Implementing the algorithm
 The function for the algorithm takes in an array of points (i.e. the line we want to simplify) as well as a "threshold" variable called epsilon. It starts by connecting the first and the last point of the original line with a "baseline". It then finds the point that is furthest away from that baseline. If that point is greater than epsilon, it will be kept and the function continues to recursively split the line into two segments and repeat the procedure. If the point is nearer from the baseline than epsilon, then all the points along the baseline can be discarded as they will be smaller than epsilon too. The output will be an array containing only those points that were marked as kept. The RDP function implemented in Python looks like this:
 
-![RDP](https://github.com/melanieimfeld/small_algorithms/images/rdp.jpg)
+![RDP](/images/rdp.jpg)
 
 ```
 def RDP(line, epsilon, results):
