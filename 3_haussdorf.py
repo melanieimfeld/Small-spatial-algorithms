@@ -1,6 +1,6 @@
 import math
 
-data = [(0,0), (1,1)]
+data = [(1,1), (0,0)]
 data2 = [(2,4), (3,3), (4,1)]
 
 def distance(point1, point2):
@@ -12,34 +12,24 @@ def distance(point1, point2):
 #find the largest of shortest distances 
 def haussdorf(A, B):
 	h = 0
+	arr = []
+	
 	for i in A:
-		shortest = float("inf")
+		print("switch")
+		shortest = float('inf')
 		for j in B:
 			dist = distance(i,j)
-			print(dist)
+			print(f"distance between: {dist}")
 			if dist < shortest:
 				shortest = dist
-	if shortest > h:
-		h = shortest
-	return shortest
+		print("shortest: ", shortest)
+		arr.append(shortest)
 
-test = haussdorf(data, data2)
-print(f"shortest distance {test} ")
+	return max(arr)
+
+h = haussdorf(data, data2)
+h2 = haussdorf(data2, data)
+print(f"shortest distance {h} {h2}")
 
 
-#find the largest of shortest distances 
-def haussdorf2(A, B):
-	h = 0
-	shortest = float("inf")
-	for i in A:
-		for j in B:
-			dist = distance(i,j)
-			print(dist)
-			if dist < shortest:
-				shortest = dist
-	if shortest > h:
-		h = shortest
-	return shortest
-
-test = haussdorf(data, data2)
-print(f"shortest distance2 {test} ")
+##https://stackoverflow.com/questions/13692801/distance-matrix-of-curves-in-python

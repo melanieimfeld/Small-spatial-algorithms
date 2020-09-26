@@ -26,7 +26,9 @@ We can then use the following formula to get the distance between a line and a p
 
 
 ### Step 2) Implementing the algorithm
-The function for the algorithm takes in an array of points (i.e. the line we want to simplify) as well as a "threshold" variable, epsilon. The algorithm starts by connecting the first and the last point of the original line with a "baseline". It then finds the point that is furthest away from that baseline. If that point is greater than epsilon, it will be kept and the function continues recursively by splitting the line into two segments and repeating the procedure. If the point is nearer from the baseline than epsilon, then all the points along the baseline can be discarded as they will be smaller than epsilon too. The output will be an array containing only those points that were marked as kept. The function looks like this:
+The function for the algorithm takes in an array of points (i.e. the line we want to simplify) as well as a "threshold" variable called epsilon. It starts by connecting the first and the last point of the original line with a "baseline". It then finds the point that is furthest away from that baseline. If that point is greater than epsilon, it will be kept and the function continues to recursively split the line into two segments and repeat the procedure. If the point is nearer from the baseline than epsilon, then all the points along the baseline can be discarded as they will be smaller than epsilon too. The output will be an array containing only those points that were marked as kept. The RDP function implemented in Python looks like this:
+
+![RDP](https://github.com/melanieimfeld/small_algorithms/images/rdp.jpg)
 
 ```
 def RDP(line, epsilon, results):
@@ -42,7 +44,7 @@ def RDP(line, epsilon, results):
 	 		maxId = i #overwrite max index
 
 	 if maxDist > epsilon: #
-	 	result1 = RDP(line[startIdx:maxId], epsilon, results)
+	 	result1 = RDP(line[startIdx:maxId+1], epsilon, results)
 	 	result2 = RDP(line[maxId:], epsilon, results)
 	 
 	 	results = [result1,result2]
@@ -59,10 +61,14 @@ O(n * log(n))
 
 ## Hausdorff Distance between polygons
 ### What do we need it for and how does it work?
-The Hausdorff distance is concerned with the fact, that two polygons that are considered "near" means that all their vertices (points) are near, rather than just looking at the two nearest points between two polygons. Unlike the "shortest path distance", the "nearness" in Hausdorff considers the entire polygon. Hausdorff distance is the «maximum distance of a set to the nearest point in the other set». It can be used in computer vision, e.g to find similar items.
+The Hausdorff distance is concerned with describing the nearness of two polygons. Rather than just looking at the two nearest points between two polygons, the definition of "closeness" in Hausdorff considers the entire polygon. Hausdorff distance is the «maximum distance of a set to the nearest point in the other set». It can be used in computer vision, e.g to find similar items.
 
 ### Step 1) Implementing the algorithm
+For every point in polygon A, we compute the Euclidian distance to every point in polygon B and keep the shortest distance. Out of the collected shortest distances, we keep the longer one with is the Hausdorff distance h(A,B). It is important to note that h(A,B) is unequal to h(B,A).
 
+
+### Time complexity
+O(n * m) or O(n + m) for the linear time implementation ()https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1362&context=cstech
 
 ## Rtrees
 ## Convex Hull
