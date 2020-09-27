@@ -1,10 +1,15 @@
 # Algorithms toolbox - Your everyday spatial algorithm!
 
-Jump to:
+Note: this toolsbox is meant to illustrate the priciple behind these methods rather than finding the least computationally intensive algorithm.
+
+Jump to:  
+[Ramer-Douglas-Peucker](#Ramer-Douglas-Peucker)  
+[Haussdorf Distance](#Haussdorf)  
+[Graham Scan Convex Hull](#Graham)  
 [Rtrees](#Rtrees)
 
 
-## Ramer-Douglas-Peucker Line Simplification
+## Ramer-Douglas-Peucker algorithm
 ### What do we need it for and how does it work?
 The Ramer-Douglas-Peucker algorithm is used in cartographic generalization to simplify vector lines - in any standard GIS software, there will be a command to execute the RDP or a similar algorithm without having to know how it works under the hood. Though it was developed for GIS problems, it can also be applied to computer vision problems, such as simplifying contours.
 
@@ -75,7 +80,16 @@ For every point in polygon A, we compute the Euclidian distance to every point i
 ### Time complexity
 O(n * m) or O(n + m) for the linear time implementation ()https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1362&context=cstech
 
-## Convex Hull Gift wrapping
+## Convex Hull Gift wrapping (jarvis / Graham)
+A convex shape is one where all angles are less than 180 degrees.
+
+### Step 1) Implementing the algorithm
+- Select point with lowest y
+- Calculate angles
+- Sort points by angle relative to lowest point
+- add points if there is a counterclockwise turn to previous point (cross product)
+- if there is not, go back and try another point
+
 
 ## Rtrees
 https://github.com/VictorDavis/GeoConvexHull
