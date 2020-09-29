@@ -49,8 +49,9 @@ def GrahamScan(data):
 		if point[1] < minY:
 			minY = point[1]
 			minIdx = i
+			gift.append(data[minIdx]) 
 
-	print(f"index of min point: {minIdx}")
+	print(f"index of min point: {minIdx}, {gift}")
 	#a = data[1][1] - data[0][1]
 	
 	angles = sortAngles(data, minIdx)
