@@ -78,7 +78,7 @@ For every point in polygon A, we compute the Euclidian distance to every point i
 
 
 ### Time complexity
-O(n * m) or O(n + m) for the linear time implementation ()https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1362&context=cstech
+O(n * m) or O(n + m) for the linear time implementation, see here: https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1362&context=cstech
 
 ## Convex Hull Gift wrapping (jarvis / Graham)
 A convex shape is one where all angles are less than 180 degrees.
@@ -90,6 +90,8 @@ A convex shape is one where all angles are less than 180 degrees.
 - add points if there is a counterclockwise turn to previous point (cross product)
 - if there is not, go back and try another point
 
+### Time complexity
+O(n * log(n))
 
 ## Rtrees
 https://github.com/VictorDavis/GeoConvexHull
