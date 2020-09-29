@@ -1,7 +1,8 @@
 import numpy as np
 import math
+import operator
 
-data = [(-1,0),(1,2),(2,1),(-1,-4),(-0.5,0.5)]
+data = [(-1,0),(1,2),(2,1),(-1,-4),(0.5,0.5),(-0.5,0.5)]
 
 
 def isCcw(point1, point2):
@@ -14,29 +15,30 @@ def isCcw(point1, point2):
 	else:
 		return "collinear" #collinear
 
+class Points:
+	def __init__(self, coords, angle):
+		self.coords = coords
+		self.angle = angle
+		self.ccw = "none"
+		self.order = 0
+
 def sortAngles(data, minIdx):
-	angleList2 = {}
-	angleList2[0] = data[minIdx]
 	angleList = []
-	
+
 	#Calculate angles
 	for i in range(len(data)):
 		if data[i] != data[minIdx]:
 			yDist = data[i][1] - data[minIdx][1]
 			xDist = data[i][0] - data[minIdx][0]
-			#print(yDist, xDist)
 			if xDist == 0: #point is perpendicular to minpoint
 				angle = math.pi / 2
 			else:
 				angle = np.arctan(yDist / xDist)
 			
-			angleList2[angle] = data[i]
-			angleList.append(angle)
+			angleList.append(Points(data[i], angle))
+			angleList.sort(key=operator.attrgetter('angle'))
 
-	angleList.sort()
-
-	temp = sorted(angleList2.values())
-	return angleList2
+	return angleList
 
 
 def GrahamScan(data):
@@ -51,28 +53,19 @@ def GrahamScan(data):
 			minIdx = i
 			gift.append(data[minIdx]) 
 
-	print(f"index of min point: {minIdx}, {gift}")
-	#a = data[1][1] - data[0][1]
 	
 	angles = sortAngles(data, minIdx)
-	keyList=sorted(angles.keys())
-	print(angles)
-	
-	for index, value in enumerate(keyList):
-		if (index>0) & (index<len(keyList)-1):
-			print(value, angles[keyList[index]], angles[keyList[index+1]])
-			ccw = isCcw(angles[keyList[index]], angles[keyList[index+1]])
-			print(ccw)
-	#print(temp)
-	#print(angleList2)
+	#valueList=sorted(angles.values())
+	for i in range(1,len(angles)-1):
+		angles[i].ccw = isCcw(angles[i].coords, angles[i+1].coords)
+		print(f"from {angles[i].coords} to {angles[i+1].coords}  is {angles[i].ccw}")
+		if angles[i].ccw == "clockwise":
+			gift.append(angles[i].coords)
+		else:
+			pass
 
-	# for point, angle in angleList2.items():
-	# 	ccw = isCcw(data[minIdx],point)
-	# 	print(ccw)
-	# 	print(point, angle)
-
-	#print(f"angle list {angleList2}")
-
+	print(gift)
+	return gift
 
 #print("cross", np.cross((0,0),(-1,-4)))
 
