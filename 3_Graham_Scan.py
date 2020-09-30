@@ -73,7 +73,7 @@ GrahamScan(data)
 
 
 
-
+#https://www.youtube.com/watch?v=YNyULRrydVI&feature=youtu.be
 #https://www.youtube.com/watch?v=B2AJoQSZf4M
 #Select point with lowest y
 #Calculate angles
