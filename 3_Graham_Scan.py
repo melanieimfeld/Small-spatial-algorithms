@@ -2,78 +2,86 @@ import numpy as np
 import math
 import operator
 
-data = [(-1,0),(1,2),(2,1),(-1,-4),(0.5,0.5),(-0.5,0.5)]
+data = [(-1, 0), (1, 2), (2, 1), (-1, -4), (0.5, 0.5), (-0.5, 0.5)]
 
 
-def isCcw(point1, point2):
-	area = np.cross(point1, point2)
+def isCcw(point1, point2, pointCurrent):
+    #point 1 - current
+    vec2x = point1[0] - pointCurrent[0]
+    vec2y = point1[1] - pointCurrent[1]
+    #point 1 - point 2
+    vec1x = point1[0] - point2[0]
+    vec1y = point1[1] - point2[1]
+    area = np.cross([vec1x, vec1y], [vec2x, vec2y])
 
-	if area > 0:
-		return "counterclockwise"
-	elif area < 0:
-		return "clockwise"
-	else:
-		return "collinear" #collinear
+    return area
+
 
 class Points:
-	def __init__(self, coords, angle):
-		self.coords = coords
-		self.angle = angle
-		self.ccw = "none"
-		self.order = 0
+    def __init__(self, coords, angle):
+        self.coords = coords
+        self.angle = angle
+        self.ccw = "none"
+        self.order = 0
+
 
 def sortAngles(data, minIdx):
-	angleList = []
+    angleList = []
 
-	#Calculate angles
-	for i in range(len(data)):
-		if data[i] != data[minIdx]:
-			yDist = data[i][1] - data[minIdx][1]
-			xDist = data[i][0] - data[minIdx][0]
-			if xDist == 0: #point is perpendicular to minpoint
-				angle = math.pi / 2
-			else:
-				angle = np.arctan(yDist / xDist)
-			
-			angleList.append(Points(data[i], angle))
-			angleList.sort(key=operator.attrgetter('angle'))
+    #Calculate angles
+    for i in range(len(data)):
+        if data[i] != data[minIdx]:
+            yDist = data[i][1] - data[minIdx][1]
+            xDist = data[i][0] - data[minIdx][0]
+            if xDist == 0:  #point is perpendicular to minpoint
+                angle = math.pi / 2
+            else:
+                angle = np.arctan(yDist / xDist)
 
-	return angleList
+#dot product instead of arctan
+
+            angleList.append(Points(data[i], angle))
+            angleList.sort(key=operator.attrgetter('angle'))
+
+    return angleList
 
 
 def GrahamScan(data):
-	#Select point with lowest y
-	gift = []
-	minY = data[0][1]
-	midIdx = 0
-	
-	for i,point in enumerate(data):
-		if point[1] < minY:
-			minY = point[1]
-			minIdx = i
-			gift.append(data[minIdx]) 
+    #Select point with lowest y
+    gift = []
+    minY = data[0][1]
+    #midIdx = 0
 
-	
-	angles = sortAngles(data, minIdx)
-	#valueList=sorted(angles.values())
-	for i in range(1,len(angles)-1):
-		angles[i].ccw = isCcw(angles[i].coords, angles[i+1].coords)
-		print(f"from {angles[i].coords} to {angles[i+1].coords}  is {angles[i].ccw}")
-		if angles[i].ccw == "clockwise":
-			gift.append(angles[i].coords)
-		else:
-			pass
+    for i, point in enumerate(data):
+        if point[1] < minY:
+            minY = point[1]
+            minIdx = i
+            gift.append(data[minIdx])
 
-	print(gift)
-	return gift
+    angles = sortAngles(data, minIdx)
 
-#print("cross", np.cross((0,0),(-1,-4)))
+    for i in range(len(angles)):
+        p = angles[i].coords
+        while (len(gift) >= 2) and (isCcw(gift[-2], gift[-1], p) < 0):
+            gift.pop()
 
-GrahamScan(data)
+        gift.append(p)
 
+        #for i in len(angles):
+        # p = angles[i].coords
+        # while isCcw(gifts[-2],gifts[-1],p) < 0:
+        #   gifts.pop()
+        # gifts.append(p)  =
+
+    return gift
 
 
+<<<<<<< HEAD
 #https://www.youtube.com/watch?v=YNyULRrydVI&feature=youtu.be
+=======
+print(GrahamScan(data))
+
+>>>>>>> b2b0f72bfed6f0731b4a14ef99de84a43fe42440
 #https://www.youtube.com/watch?v=B2AJoQSZf4M
 #Select point with lowest y
 #Calculate angles
