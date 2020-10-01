@@ -84,11 +84,13 @@ O(n * m) or O(n + m) for the linear time implementation, see here: https://docs.
 ## 3) Convex Hull Gift Wrapping - Graham Scan
 A convex shape is one where all angles are less than 180 degrees.
 
-### Step 1) Implementing the algorithm
+![GC](/images/gc-04.jpg)
+
+### Implementing the algorithm
 - Select point with lowest y
 - Calculate angles
 - Sort points by angle relative to lowest point
-- add points if there is a counterclockwise turn to previous point (cross product)
+- add points if there is a counterclockwise turn to previous vpoint (cross product)
 - if there is not, go back and try another point
 
 ### Time complexity
@@ -99,6 +101,12 @@ https://medium.com/@waleoyediran/spatial-indexing-with-quadtrees-b998ae49336
 https://thecodingtrain.com/CodingChallenges/098.1-quadtree.html
 
 ## 5) Travelling salesperson
+A salesperson needs to travel to different cities and back to the home city - in which order do the cities visited make up the shortest overall distance? 
+
+### Implementing the algorithm: Brute force
+- a weighted, undirected graph
+
+
 https://thecodingtrain.com/CodingChallenges/
 
 ## Rtrees
