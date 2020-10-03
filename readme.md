@@ -5,8 +5,8 @@ Note: this toolsbox is meant to illustrate the priciple behind these methods rat
 Index:  
 [Ramer-Douglas-Peucker](#Ramer-Douglas-Peucker)  
 [Haussdorf Distance](#Haussdorf)  
-[Graham Scan Convex Hull](#Graham)
-[Travelling Salesperson](#Rtrees)
+[Graham Scan Convex Hull](#Graham)  
+[Travelling Salesperson](#Rtrees)  
 [Quadtrees](#Quadtree)  
 
 
