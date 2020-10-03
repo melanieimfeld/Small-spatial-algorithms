@@ -1,13 +1,13 @@
-# Algorithms toolbox - Your everyday spatial algorithm!
+# Algorithms toolbox - Your everyday spatial algorithm
 
-Note: this toolsbox is meant to illustrate the priciple behind these methods rather than finding the least computationally intensive algorithm.
+Note: this toolsbox is meant to illustrate the priciple behind these methods rather than finding the least computationally intensive algorithm!
 
-Jump to:  
+Index:  
 [Ramer-Douglas-Peucker](#Ramer-Douglas-Peucker)  
 [Haussdorf Distance](#Haussdorf)  
 [Graham Scan Convex Hull](#Graham)
-[Quadtree](#Quadtree)  
-[Rtrees](#Rtrees)
+[Travelling Salesperson](#Rtrees)
+[Quadtrees](#Quadtree)  
 
 
 ## 1) Ramer-Douglas-Peucker algorithm
@@ -82,7 +82,7 @@ For every point in polygon A, we compute the Euclidian distance to every point i
 O(n * m) or O(n + m) for the linear time implementation, see here: https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1362&context=cstech
 
 ## 3) Convex Hull Gift Wrapping - Graham Scan
-A convex shape is one where all angles are less than 180 degrees.
+A convex shape is the smallest convex polygon / envelope for a set of points. Finding the convex polygons can be useful in many applications, such as geometric modelling or statistical visualization.
 
 ![GC](/images/gc-04.jpg)
 
@@ -96,18 +96,14 @@ A convex shape is one where all angles are less than 180 degrees.
 ### Time complexity
 O(n * log(n))
 
-## 4) Quadtree
-https://medium.com/@waleoyediran/spatial-indexing-with-quadtrees-b998ae49336
-https://thecodingtrain.com/CodingChallenges/098.1-quadtree.html
 
-## 5) Travelling salesperson
+## 4) Travelling salesperson
 A salesperson needs to travel to different cities and back to the home city - in which order do the cities visited make up the shortest overall distance? 
 
-### Implementing the algorithm: Brute force
+### Implementing the algorithm: Brute force version
 - a weighted, undirected graph
 
+## 5) Quadtree
+*tbd*
 
-https://thecodingtrain.com/CodingChallenges/
 
-## Rtrees
-https://github.com/VictorDavis/GeoConvexHull

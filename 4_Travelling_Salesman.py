@@ -1,7 +1,11 @@
 import random
 import math
+import itertools
 
 ##### Completely Brute Force and not great
+#do it more like this!
+#https://codereview.stackexchange.com/questions/81865/travelling-salesman-using-brute-force-and-heuristics
+
 import numpy
 
 ##find the number of permutations for distinct items: n!
@@ -14,17 +18,27 @@ for i in range(numPoints):
 
 def main(points):
 	i = 0
-	while(i < 5):
-		points = swap(points, random.randint(0,len(points)-1),random.randint(0,len(points)-1))
-		print(points, random.randint(0,len(points)-1))
+	minDistance = calcDist(points)
+
+	for points in itertools.permutations(points):
+		points = list(points)
+		print(minDistance)
+		#print(points, random.randint(0,len(points)-1))
+		#points = swap(points, random.randint(0,len(points)-1),random.randint(0,len(points)-1))
 		distance = calcDist(points)
+		if distance < minDistance:
+			minDistance = distance
 		i += 1
-		print(distance)
+	return f"min dist {minDistance}" 
 
 def swap(points, idx1, idx2):
 	temp = points[idx1]
 	points[idx1] = points[idx2]
 	points[idx2] = temp
+
+	#do it more like this!
+#https://codereview.stackexchange.com/questions/81865/travelling-salesman-using-brute-force-and-heuristics
+
 	return points
 
 def calcDist(points):
