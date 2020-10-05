@@ -82,19 +82,23 @@ For every point in polygon A, we compute the Euclidian distance to every point i
 O(n * m) or O(n + m) for the linear time implementation, see here: https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1362&context=cstech
 
 ## 3) Convex Hull Gift Wrapping - Graham Scan
-A convex shape is the smallest convex polygon / envelope for a set of points. Finding the convex polygons can be useful in many applications, such as geometric modelling or statistical visualization.
+In computational geometry, gift wrapping algorithms are a family of algorithms that compute the convex hull of a given set of points. What is a convex hull? Basically, it is a shape that encloses a set of points, such that no corners of the shape are bent inwards, hence the name “gift wrapping”. But why would you want to find this shape? Although the technique seems to have a variety of applications outside of GIS, such as image processing, I am most familiar with GIS applications. For example, a convex hull can be used as a way to better describe patterns, such as animal movements that were collected as point features.
 
-![GC](/images/gc-04.jpg)
+![GC](/images/gc.jpg)
 
 ### Implementing the algorithm
-- Select point with lowest y
-- Calculate angles
-- Sort points by angle relative to lowest point
-- add points if there is a counterclockwise turn to previous vpoint (cross product)
-- if there is not, go back and try another point
+1. Given a set of points, select point with lowest y value (Fig. 1)
+2. Calculate angles between the lowest point and all the other points (Fig. 1)
+3. The size of the angle will determine in which order to iterate through points. Thus, sort points by angle relative to lowest point in ascending order
+4. Iterate through points. Add a point to an output array if there is a counterclockwise turn to previous point. To figure out if a turn is clockwise or counterclockwise, we can leverage the cross product of two vectors (Fig. 2 and 3).
+5. If a point is located clockwise relative to the previous point, we pop it off the output array.
+6. When we are done with scanning the points, return the result (Fig. 4)
+
 
 ### Time complexity
 O(n * log(n))
+
+Most sorting algorithms take n log(n) time, while the actual scan takes n time. We select the dominant function, therefore the overall time complexity is O(n log (n)). How could we optimize the Graham scan? We could for example wipe out points in the interior that we for sure know are not in the convex hull by finding the farthest points in the SW, NW, NE, and SE direction and eliminte the points that are enclosed by these 4 points. I will try to update the Repo with an example the above optimization process in the next weeks!
 
 
 ## 4) Travelling salesperson

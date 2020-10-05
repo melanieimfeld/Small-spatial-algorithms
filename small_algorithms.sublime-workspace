@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"b",
+				"bottomUp"
+			],
+			[
 				"max",
 				"maxDistance"
 			],
@@ -182,10 +186,6 @@
 			[
 				"l",
 				"length"
-			],
-			[
-				"b",
-				"bullArray"
 			],
 			[
 				"pl",
@@ -523,25 +523,16 @@
 			"file": "4_Travelling_Salesman.py",
 			"settings":
 			{
-				"buffer_size": 1412,
+				"buffer_size": 1311,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "4_Travelling_Salesman_2.py",
+			"file": "archive/4_Travelling_Salesman_2.py",
 			"settings":
 			{
-				"buffer_size": 756,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "README.md",
-			"settings":
-			{
-				"buffer_size": 5034,
+				"buffer_size": 1318,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -682,10 +673,14 @@
 	"expanded_folders":
 	[
 		"/Users/melanieimfeld/Documents/01_projects/small_algorithms",
+		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/archive",
 		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/images"
 	],
 	"file_history":
 	[
+		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/archive/4_Travelling_Salesman_2.py",
+		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/README.md",
+		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/4_Travelling_Salesman_2.py",
 		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/4_Travelling_Salesman",
 		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/1_Ramer_Douglas_Peucker.py",
 		"/Users/melanieimfeld/Documents/01_projects/ctdatahaven/mapboxreact/public/site.css",
@@ -694,7 +689,6 @@
 		"/Users/melanieimfeld/Documents/01_projects/ctdatahaven/mapboxreact/package.json",
 		"/Users/melanieimfeld/Documents/01_projects/ctdatahaven/mapboxreact/public/index.html",
 		"/Users/melanieimfeld/Documents/01_projects/ctdatahaven/mapboxreact/ctdatahaven.sublime-workspace",
-		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/README.md",
 		"/Users/melanieimfeld/Documents/01_projects/small_algorithms/3_Graham_Scan.py",
 		"/Users/melanieimfeld/Documents/01_projects/RC_randomstuff/binary_search.py",
 		"/Users/melanieimfeld/Documents/01_projects/RC_randomstuff/insertion_srt.js",
@@ -811,9 +805,7 @@
 		"/Users/melanieimfeld/Documents/01_projects/matterjs/pathseg.js",
 		"/Users/melanieimfeld/Documents/01_projects/matterjs/matter.js",
 		"/Users/melanieimfeld/Documents/01_projects/matterjs/server.js",
-		"/Users/melanieimfeld/Documents/01_projects/matterjs/node.js",
-		"/Users/melanieimfeld/Documents/01_projects/globe_threejs/js/script.js",
-		"/Users/melanieimfeld/Documents/01_projects/globe_threejs/index_test.html"
+		"/Users/melanieimfeld/Documents/01_projects/matterjs/node.js"
 	],
 	"find":
 	{
@@ -857,15 +849,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1412,
+						"buffer_size": 1311,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1388,
-								1388
+								453,
+								453
 							]
 						],
 						"settings":
@@ -882,60 +874,32 @@
 				},
 				{
 					"buffer": 1,
-					"file": "4_Travelling_Salesman_2.py",
+					"file": "archive/4_Travelling_Salesman_2.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 756,
+						"buffer_size": 1318,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								362,
-								362
+								1016,
+								1016
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Python/Python.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 366.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "README.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5034,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4931,
-								4931
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -978,7 +942,7 @@
 	},
 	"output.exec":
 	{
-		"height": 290.0
+		"height": 201.0
 	},
 	"output.find_results":
 	{
