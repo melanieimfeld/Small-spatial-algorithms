@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"min",
+				"minPoint"
+			],
+			[
 				"b",
 				"bottomUp"
 			],
@@ -62,10 +66,6 @@
 			[
 				"guess",
 				"guessIdx"
-			],
-			[
-				"min",
-				"minIdx"
 			],
 			[
 				"ang",
@@ -523,7 +523,7 @@
 			"file": "4_Travelling_Salesman.py",
 			"settings":
 			{
-				"buffer_size": 1311,
+				"buffer_size": 1200,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -532,7 +532,25 @@
 			"file": "archive/4_Travelling_Salesman_2.py",
 			"settings":
 			{
-				"buffer_size": 1318,
+				"buffer_size": 1449,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "3_Graham_Scan.py",
+			"settings":
+			{
+				"buffer_size": 1650,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 6398,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -840,7 +858,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -849,15 +867,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1311,
+						"buffer_size": 1200,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								453,
-								453
+								967,
+								967
 							]
 						],
 						"settings":
@@ -866,10 +884,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 86.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -878,15 +896,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1318,
+						"buffer_size": 1449,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1016,
-								1016
+								1238,
+								1238
 							]
 						],
 						"settings":
@@ -896,7 +914,66 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 366.0,
+						"translation.y": 296.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "3_Graham_Scan.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1650,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								996,
+								996
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 267.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6398,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3987,
+								3987
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1255.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -942,7 +1019,7 @@
 	},
 	"output.exec":
 	{
-		"height": 201.0
+		"height": 159.0
 	},
 	"output.find_results":
 	{
