@@ -2,3 +2,5 @@ algo.py
 test.py
 .DS_Store
 /archive/*
+small_algorithms.sublime-project
+small_algorithms.sublime-workspace

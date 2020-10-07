@@ -3,12 +3,11 @@
 Note: this toolsbox is meant to illustrate the priciple behind these methods rather than finding the least computationally intensive algorithm!
 
 Index:  
-[Ramer-Douglas-Peucker](#Ramer-Douglas-Peucker)  
-[Haussdorf Distance](#Haussdorf)  
-[Graham Scan Convex Hull](#Graham)  
-[Travelling Salesperson](#Rtrees)  
-[Quadtrees](#Quadtree)  
-
+[Ramer-Douglas-Peucker](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/1_Ramer_Douglas_Peucker.py)  
+[Haussdorf Distance](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/2_Haussdorf.py)  
+[Graham Scan Convex Hull](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/3_Graham_Scan.py)  
+[Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/4_Travelling_Salesperson_brute.py)  
+Quadtrees *tbd*  
 
 ## 1) Ramer-Douglas-Peucker algorithm
 ### What do we need it for and how does it work?
