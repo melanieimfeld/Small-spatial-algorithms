@@ -1,6 +1,6 @@
 # Algorithms toolbox - Your everyday spatial algorithm
 
-Note: this toolsbox is meant to illustrate the priciple behind these methods rather than finding the least computationally intensive algorithm!
+Note: this toolbox is meant to illustrate the principle behind methoods that power your everyday GIS software rather than finding the least computationally intensive algorithm!
 
 Index:  
 [Ramer-Douglas-Peucker](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/1_Ramer_Douglas_Peucker.py)  
