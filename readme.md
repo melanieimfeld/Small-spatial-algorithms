@@ -6,7 +6,7 @@ Index:
 [Ramer-Douglas-Peucker](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/1_Ramer_Douglas_Peucker.py)  
 [Haussdorf Distance](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/2_Haussdorf.py)  
 [Graham Scan Convex Hull](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/3_Graham_Scan.py)  
-[Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/4_Travelling_Salesperson_brute.py)  
+[Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/4_Traveling_Salesperson_brute.py)  
 Quadtrees *tbd*  
 
 ## 1) Ramer-Douglas-Peucker algorithm
