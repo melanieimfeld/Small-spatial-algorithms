@@ -105,13 +105,13 @@ Most sorting algorithms take n log(n) time, while the actual scan takes n time. 
 ### What do we need it for and how does it work?
 The TSP problem isn't hard to explain: Imagine a salesperson who needs to travel to different cities and back to the home city - in which order do the cities visited make up the shortest overall distance? Unfortunately, the solution to this problem isn't as simple. In fact, there are many solutions, some heuristic ( = approximations) and some exact, some computationally more or less intensive. In graph theory lingo, we would call our cities "nodes" or "vertices" and our distances between cities "edges". The distance itself is called "weight" in graph theory. When it comes to applications, the TSP does not have to be geospatial at all: The weight of the edges can be replaced by any value, such as cost (e.g flight tickets).
 
-
+![TSP](/images/tsp.png)
 
 ### Implementing the algorithm: Exact, brute force version
 - a weighted, undirected graph
 - Exact and not approximate solution
 
-### Implementing the algorithm: Exact, Held-Karp
+### Implementing the algorithm: Approximation, nearest neighbor version
 - only the shortest subpath
 
 
