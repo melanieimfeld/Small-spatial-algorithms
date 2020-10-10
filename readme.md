@@ -1,6 +1,6 @@
 # Algorithms toolbox - Your everyday spatial algorithm
 
-Note: this toolbox is meant to illustrate the principle behind methoods that power your everyday GIS software rather than finding the least computationally intensive algorithm!
+Note: this toolbox is meant to illustrate the principle behind methods that power your everyday GIS software rather than finding the least computationally intensive algorithm!
 
 Index:  
 [Ramer-Douglas-Peucker](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/1_Ramer_Douglas_Peucker.py)  
@@ -81,6 +81,7 @@ For every point in polygon A, we compute the Euclidian distance to every point i
 O(n * m) or O(n + m) for the linear time implementation, see here: https://docs.lib.purdue.edu/cgi/viewcontent.cgi?article=1362&context=cstech
 
 ## 3) Convex Hull Gift Wrapping - Graham Scan
+### What do we need it for and how does it work?
 In computational geometry, gift wrapping algorithms are a family of algorithms that compute the convex hull of a given set of points. What is a convex hull? Basically, it is a shape that encloses a set of points, such that no corners of the shape are bent inwards, hence the name “gift wrapping”. But why would you want to find this shape? Although the technique seems to have a variety of applications outside of GIS, such as image processing, I am most familiar with GIS applications. For example, a convex hull can be used as a way to better describe patterns, such as animal movements that were collected as point features.
 
 ![GC](/images/gc.jpg)
@@ -100,11 +101,22 @@ O(n * log(n))
 Most sorting algorithms take n log(n) time, while the actual scan takes n time. We select the dominant function, therefore the overall time complexity is O(n log (n)). How could we optimize the Graham scan? We could for example wipe out points in the interior that we for sure know are not in the convex hull by finding the farthest points in the SW, NW, NE, and SE direction and eliminte the points that are enclosed by these 4 points. I will try to update the Repo with an example the above optimization process in the next weeks!
 
 
-## 4) Travelling salesperson
-A salesperson needs to travel to different cities and back to the home city - in which order do the cities visited make up the shortest overall distance? 
+## 4) Traveling Salesperson Problem
+### What do we need it for and how does it work?
+The TSP problem isn't hard to explain: Imagine a salesperson who needs to travel to different cities and back to the home city - in which order do the cities visited make up the shortest overall distance? Unfortunately, the solution to this problem isn't as simple. In fact, there are many solutions, some heuristic ( = approximations) and some exact, some computationally more or less intensive. In graph theory lingo, we would call our cities "nodes" or "vertices" and our distances between cities "edges". The distance itself is called "weight" in graph theory. When it comes to applications, the TSP does not have to be geospatial at all: The weight of the edges can be replaced by any value, such as cost (e.g flight tickets).
 
-### Implementing the algorithm: Brute force version
+
+
+### Implementing the algorithm: Exact, brute force version
 - a weighted, undirected graph
+- Exact and not approximate solution
+
+### Implementing the algorithm: Exact, Held-Karp
+- only the shortest subpath
+
+
+### Time complexity
+O(n!)
 
 ## 5) Quadtree
 *tbd*
