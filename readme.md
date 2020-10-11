@@ -103,20 +103,20 @@ Most sorting algorithms take n log(n) time, while the actual scan takes n time. 
 
 ## 4) Traveling Salesperson Problem
 ### What do we need it for and how does it work?
-The TSP problem isn't hard to explain: Imagine a salesperson who needs to travel to different cities and back to the home city - in which order do the cities visited make up the shortest overall distance? Unfortunately, the solution to this problem isn't as simple. In fact, there are many solutions, some heuristic ( = approximations) and some exact, some computationally more or less intensive. In graph theory lingo, we would call our cities "nodes" or "vertices" and our distances between cities "edges". The distance itself is called "weight" in graph theory. When it comes to applications, the TSP does not have to be geospatial at all: The weight of the edges can be replaced by any value, such as cost (e.g flight tickets).
+The Traveling Salesperson problem itself is simple to explain: Imagine a salesperson who needs to travel to different cities and back to the home city - in which order do the cities visited make up the shortest overall distance? When it comes to applications, the TSP does not have to be strictly geospatial: The distance can be replaced by any value, such as cost (e.g flight tickets) or time. The solution to the problem is far less simple: In fact, there are many solutions, some heuristic (i.e. approximations) and some exact, some computationally more or less intensive. Here, I want to explore the simplest way to solve the TSP in an exact manner and compare it with an approximation.
+
+
+### Implementing the algorithm: Brute force version (Exact)
+The basic way to solve this problem is to find all possible combinations of cities and select the combination - or tour - of cities that makes up the shortest overall distance. This idea illustrated for 4 cities named A,B,C and D in Fig. 1. In the script `04_Traveling_Salesperson_brute_nn.py`, the main function `tsp_brute()` takes an array of tuples as input and shuffles the array around using Python’s `itertools` module, while the helper functions `dist()`, `calcDist()`, `shortest()` calculate the total distance of each tour.
 
 ![TSP](/images/tsp.png)
 
-### Implementing the algorithm: Exact, brute force version
-- a weighted, undirected graph
-- Exact and not approximate solution
-
-### Implementing the algorithm: Approximation, nearest neighbor version
-- only the shortest subpath
+### Implementing the algorithm: Nearest neighbor version (Approximation)
+For the sake of speed, it might not always be necessary to find the shortest tour but rather a tour that is close to the shortest tour. There are exact algorithms that perform better than our brute force approach, but let’s also look at an approximation that will find a, but not necessarily the shortest tour: The nearest neighbor algorithm does pretty much exactly what you think it would do. For each city, it will simply find it's the nearest neighbor and stitch them together to create a tour.
 
 
 ### Time complexity
-O(n!)
+Brute force: O(n!) / Nearest neighbor: O(n2)
 
 ## 5) Quadtree
 *tbd*
