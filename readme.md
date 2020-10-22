@@ -119,7 +119,7 @@ For the sake of speed, it might not always be necessary to find the shortest tou
 Brute force: O(n!) / Nearest neighbor: O(n2)
 
 ## 5) Geospatial queries: Quadtrees
-Imagine you just arrived at the trainstation of a new city and you want to know all coffeeshops that are within a given radius of your location. Geospatial queries is an area that I really want to learn more about, I'll spend a bit more time on this particular topic and will explore different methods of spatial indexing. Spatial indexing is something that is elementary to any GIS analysis and GIS softwares are pretty good at hiding the complexity of a spatial query behind the GUI.
+Imagine you just arrived at the trainstation of a new city and you want to know all coffeeshops that are within a given radius of your location. Geospatial queries is an area that I really want to learn more about, I'll spend a bit more time on this particular topic and will explore different methods of spatial indexing. Spatial indexing is something that is elementary to any GIS analysis and GIS softwares are pretty good at hiding the complexity of a spatial query behind the GUI. Applications: better collision detection, finding a point.
 
 
 
