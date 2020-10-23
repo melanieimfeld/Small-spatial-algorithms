@@ -1,8 +1,9 @@
-#import spatialhelpers
+import spatialhelpers
+import matplotlib.pyplot as plt
 
 #create a bunch or random points
 #cities = spatialhelpers.Cities(10, width = 200, height = 200)
-cities = [(150,150),(2,2),(3,3),(4,4),(250,150),(150,250),(250,250)]
+cities = [(2,2),(3,3),(4,4),(5,5)]
 print("original array", cities)
 
 #create a rectangle
@@ -19,7 +20,7 @@ class Rectangle():
 		else:
 			print("is rect too!")
 
-	def intersects(self, myrange):
+	def intersects(self, myrange): #for rectangles
 		return not (self.x + self.width < myrange.x or self.x > myrange.x + myrange.width or self.y > myrange.y + myrange.height or self.y + self.height < myrange.y)
 
 
@@ -33,10 +34,10 @@ class Quadtree():
 	def subdivide(self): #create 4 new quadtrees
 		w = self.bound.width/2
 		h = self.bound.height/2
-		print(f"subdivide nw: {self.bound.x + w, self.bound.y} ne: {self.bound.x, self.bound.y} sw: {self.bound.x, self.bound.y + h}")
+		print(f"subdivide ne: {self.bound.x + w, self.bound.y} nw: {self.bound.x, self.bound.y} sw: {self.bound.x, self.bound.y + h} se: {self.bound.x + w, self.bound.y + h}")
 
-		self.nw = Quadtree(Rectangle(self.bound.x + w, self.bound.y, w, h), self.capacity)
-		self.ne = Quadtree(Rectangle(self.bound.x, self.bound.y, w, h), self.capacity)
+		self.ne = Quadtree(Rectangle(self.bound.x + w, self.bound.y, w, h), self.capacity)
+		self.nw = Quadtree(Rectangle(self.bound.x, self.bound.y, w, h), self.capacity)
 		self.sw = Quadtree(Rectangle(self.bound.x, self.bound.y + h, w, h), self.capacity) 
 		self.se = Quadtree(Rectangle(self.bound.x + w, self.bound.y + h, w, h), self.capacity)
 		self.isDivided = True
@@ -80,24 +81,29 @@ class Quadtree():
 boundary = Rectangle(0, 0, 400, 400)
 qt = Quadtree(boundary, 3)
 
-#print(qt.bound.width)
-
-
 '''This part will take care of inserting our points in the quadtree structure before we can return it'''
 for city in cities:
 	qt.insert(city)
 
+print("qt", qt.nw.points)
 #print(f"nw points {qt.nw.points}, ne points {qt.ne.points}, sw points {qt.sw.points}, se points {qt.se.points}")
 
+plt.scatter(*zip(*cities)) #* -> reversed zip (unzip)
+#plt.show()
 
-'''Once inserted, we can query the points'''
+
+'''Once inserted, we can query the points. We could look at different spatial query method, like nearest neighbors or range (rectangle or circle)'''
 bbbox = Rectangle(0,0,200,200)
 
-print(boundary.contains(bbbox))
-
+#print(boundary.contains(bbbox))
 #qt.query(bbbox)
-
 #print(qt.query(bbbox))
+
+'''
+TODO:
+- what if point is not contained by any quadtree because it lies on intersection of two trees?
+- Examples seem to suggest that only leaf nodes contain points
+'''
 
 
 
