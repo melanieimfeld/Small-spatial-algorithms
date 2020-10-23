@@ -1,8 +1,9 @@
-import spatialhelpers
+#import spatialhelpers
 
 #create a bunch or random points
-cities = spatialhelpers.Cities(100, width = 400, height = 400)
-print(cities)
+#cities = spatialhelpers.Cities(10, width = 200, height = 200)
+cities = [(150,150),(2,2),(3,3),(4,4),(250,150),(150,250),(250,250)]
+print("original array", cities)
 
 #create a rectangle
 class Rectangle():
@@ -13,7 +14,14 @@ class Rectangle():
 		self.height = height
 
 	def contains(self, point):
-		return (point[0] > self.x and self.x + self.width > point[0] and point[1] > self.y and point[1] < self.y + self.height)
+		if not isinstance(point, Rectangle):
+			return (point[0] > self.x and self.x + self.width > point[0] and point[1] > self.y and point[1] < self.y + self.height)
+		else:
+			print("is rect too!")
+
+	def intersects(self, myrange):
+		return not (self.x + self.width < myrange.x or self.x > myrange.x + myrange.width or self.y > myrange.y + myrange.height or self.y + self.height < myrange.y)
+
 
 class Quadtree():
 	def __init__(self, boundary, n):
@@ -33,6 +41,27 @@ class Quadtree():
 		self.se = Quadtree(Rectangle(self.bound.x + w, self.bound.y + h, w, h), self.capacity)
 		self.isDivided = True
 
+	def query(self, myrange): #does this range and a quadtree overlap?
+		found = []
+		if not self.bound.intersects(myrange):
+			return found
+		else: #else collect points
+			for p in self.points:
+				if myrange.contains(p):
+					found.append(p)
+
+			# if myrange > bound:
+			# 	found.append(self.points)
+
+			if self.isDivided: #and check if there are any children
+				found.append(self.nw.query(myrange))
+				found.append(self.ne.query(myrange))
+				found.append(self.sw.query(myrange))
+				found.append(self.se.query(myrange))
+
+			return found
+
+
 	def insert(self, point):
 		if not self.bound.contains(point):
 			return
@@ -49,18 +78,26 @@ class Quadtree():
 				self.se.insert(point)
 
 boundary = Rectangle(0, 0, 400, 400)
-qt = Quadtree(boundary, 4)
+qt = Quadtree(boundary, 3)
 
-print(qt.bound.width)
+#print(qt.bound.width)
 
+
+'''This part will take care of inserting our points in the quadtree structure before we can return it'''
 for city in cities:
 	qt.insert(city)
 
-print(f"nw points {qt.nw.points}, ne points {qt.ne.points}, sw points {qt.sw.points}, se points {qt.se.points}")
+#print(f"nw points {qt.nw.points}, ne points {qt.ne.points}, sw points {qt.sw.points}, se points {qt.se.points}")
 
 
-#for point in points:
-#qt.insert(point)
+'''Once inserted, we can query the points'''
+bbbox = Rectangle(0,0,200,200)
+
+print(boundary.contains(bbbox))
+
+#qt.query(bbbox)
+
+#print(qt.query(bbbox))
 
 
 

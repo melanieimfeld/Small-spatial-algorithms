@@ -6,5 +6,5 @@ def Cities(n, width = 400, height = 400, seed = 42):
 	random.seed(seed * n)
 	return frozenset((random.randrange(width), random.randrange(height)) for c in range(n))
 
-test = Cities(4)
-print(test)
+#test = Cities(4)
+#print(test)
