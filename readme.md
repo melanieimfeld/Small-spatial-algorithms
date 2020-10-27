@@ -7,7 +7,7 @@ Index:
 [Haussdorf Distance](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/02_Haussdorf.py)  
 [Graham Scan Convex Hull](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/03_Graham_Scan.py)  
 [Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/04_Traveling_Salesperson_brute_nn.py)  
-[Quadtrees](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_quadtrees_rtrees.py)
+[Quadtrees](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_Quadtrees_rtrees.py)
 
 ## 1) Ramer-Douglas-Peucker algorithm
 ### What do we need it for and how does it work?
@@ -123,7 +123,7 @@ Brute force: O(n!) / Nearest neighbor: O(n2)
 Imagine you wanted to build an application that allows a user to find out what coffee shops that are within a given radius of the user's location. Intuitively, you would probably want to check if the lat/long positions of all coffee shops in your dataset fall within the given radius. You could do this easily, but in an array of n items, you would have to visit n-1 items, which is will essentially take you O(n) time. Spatial databases, such as Postgis, use more efficient methods for spatial queries such as the one just described. One method among many is the Quadtree algorithm. Like many algorithms, the Quadtree is used for applications beyond geospatial, such as collision detection in games, image processing, or data visualization. The Quadtree is also the conceptual basis for Geohashes, a common public domain geocoding system that encodes a geographic location into a short string of letters and digits.
 
 ### Implementing the algorithm
-As the name implies, this algorithm works with four ("quad") trees. Instead of looking at each point as in the above example, we recursively scan through four quads to check if either of them overlaps with our search range. Before going through the code, it might make sense to define some conventions. In the [code](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_quadtrees_rtrees.py), the chosen naming for each quadrant is NW, NE, SW, SE. The algorithm is implemented for a 2d plane, where x:0 and y:0 are at the top left corner (see Fig. 1).
+As the name implies, this algorithm works with four ("quad") trees. Instead of looking at each point as in the above example, we recursively scan through four quads to check if either of them overlaps with our search range. Before going through the code, it might make sense to define some conventions. In the [code](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_Quadtrees_rtrees.py), the chosen naming for each quadrant is NW, NE, SW, SE. The algorithm is implemented for a 2d plane, where x:0 and y:0 are at the top left corner (see Fig. 1).
 
 ![Quadtree](/images/quadtree.png)
 
