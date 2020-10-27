@@ -6,7 +6,7 @@ Index:
 [Ramer-Douglas-Peucker](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/01_Ramer_Douglas_Peucker.py)  
 [Haussdorf Distance](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/02_Haussdorf.py)  
 [Graham Scan Convex Hull](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/03_Graham_Scan.py)  
-[Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/04_Traveling_Salesperson_brute.py)  
+[Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/04_Traveling_Salesperson_brute_nn.py)  
 [Quadtrees](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_quadtrees_rtrees.py)
 
 ## 1) Ramer-Douglas-Peucker algorithm
@@ -123,7 +123,7 @@ Brute force: O(n!) / Nearest neighbor: O(n2)
 Imagine you wanted to build an application that allows a user to find out what coffee shops that are within a given radius of the user's location. Intuitively, you would probably want to check if the lat/long positions of all coffee shops in your dataset fall within the given radius. You could do this easily, but in an array of n items, you would have to visit n-1 items, which is will essentially take you O(n) time. Spatial databases, such as Postgis, use more efficient methods for spatial queries such as the one just described. One method among many is the Quadtree algorithm. Like many algorithms, the Quadtree is used for applications beyond geospatial, such as collision detection in games, image processing, or data visualization. The Quadtree is also the conceptual basis for Geohashes, a common public domain geocoding system that encodes a geographic location into a short string of letters and digits.
 
 ### Implementing the algorithm
-As the name implies, this algorithm works with four ("quad") trees. Instead of looking at each point as in the above example, we recursively scan through four quads to check if either of them overlaps with our search range. Before going through the code, it might make sense to define some conventions. In the [code](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_quadtrees_rtrees.py), the chosen naming for each quadrant is NW, NE, SW, SE. The algorithm is implemented for a 2d plane, where x:0 and y:0 are at the top left corner (see Fig. 1.1).
+As the name implies, this algorithm works with four ("quad") trees. Instead of looking at each point as in the above example, we recursively scan through four quads to check if either of them overlaps with our search range. Before going through the code, it might make sense to define some conventions. In the [code](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_quadtrees_rtrees.py), the chosen naming for each quadrant is NW, NE, SW, SE. The algorithm is implemented for a 2d plane, where x:0 and y:0 are at the top left corner (see Fig. 1).
 
 ![Quadtree](/images/quadtree.png)
 
@@ -132,26 +132,25 @@ Let's go through the most important steps of the algorithm:
  	1. Define a maximum capacity `self.capacity`. The algorithm will recursively add points to a the quad that contains the point and the max. capacity will tell us how many points a quad is allowed to hold.
  	2. Below is the function that inserts a point into a Quadtree class (for more details on how the class is built, check out the source code). It only executes if the point is contained in `self.bound`, which defines our quad boundary. If the point is contained in `self.bound`, we have two options: If the capacity is not yet reached and there are no subdivisions, we append it to the current quad. If the capacity is reached and the quad is not subdivided already, we subdivide the current quad into four new child quads. Here, we'll also have to redistribute the main quads' points to the children and "clean" the main quad. Then, we insert the point in the correct child quad. 
 
- 	```
- 	def insert(self, point):
-		if self.bound.contains(point): 
-			if len(self.points) <= self.capacity and self.isDivided == False: #capacity is not reached
-				self.points.append(point)
-			else: #capacity is reached
-				if not self.isDivided: #make child quads if not available yet
-					self.subdivide()
-					#here, there must be some points in the main quad that need to be redistributed to children
-					for p in self.points:
-						self.nw.insert(p)
-						self.ne.insert(p)
-						self.sw.insert(p)
-						self.se.insert(p)
-					self.points = [] #clean main
-				self.nw.insert(point)
-				self.ne.insert(point)
-				self.sw.insert(point)
-				self.se.insert(point)
-	```
+```
+def insert(self, point):
+if self.bound.contains(point): 
+	if len(self.points) <= self.capacity and self.isDivided == False:
+		self.points.append(point)
+	else: #capacity is reached
+		if not self.isDivided:
+			self.subdivide()
+			for p in self.points:
+				self.nw.insert(p)
+				self.ne.insert(p)
+				self.sw.insert(p)
+				self.se.insert(p)
+			self.points = [] #clean main
+		self.nw.insert(point)
+		self.ne.insert(point)
+		self.sw.insert(point)
+		self.se.insert(point)
+```
 
 	3. Repeat the above procedure for each point in your array. Fig 2.1 and 2.2 show two different ways of visualizing the entire insert procedure for 32 points and a capacity of 3. 
 
@@ -159,25 +158,27 @@ Let's go through the most important steps of the algorithm:
 
 2. Implement a query function to find points within a search range:
 	1. Now that we have inserted the points, we can query them. Fig. 3 illustrates an example of a rectangular search area in red. As you can see, the points within the search area can be on different quads, meaning that we will have to retrieve all points from different quads. Thus, our query function will input x, y, and size inputs for a rectangular search area that we call `myrange`. To find a point, we check if the search range intersects with the quad we are looking at. If it does not, we return an empty `found` array. If it does, we collect the points in our `found` array. To do this, we first check if the quad has children. If it does, we continue searching the children. If it doesn't, we append the points from the current quad. Note that there are two ways to append points in the current quad: If the `myrange` contains the quad, we append all points. Else, we will have to check each point on the quad to see if it overlaps.
-	```	def query(self, myrange):
-		found = []
-		if not self.bound.intersects(myrange): #no intersection between bounding box and quad
-			return found
+
+```	
+def query(self, myrange):
+	found = []
+	if not self.bound.intersects(myrange): #no intersection between bounding box and quad
+		return found
+	else:
+		if self.isDivided:
+			found.append(self.nw.query(myrange))
+			found.append(self.ne.query(myrange))
+			found.append(self.sw.query(myrange))
+			found.append(self.se.query(myrange))
 		else:
-			if self.isDivided: #and check if there are any children
-				found.append(self.nw.query(myrange))
-				found.append(self.ne.query(myrange))
-				found.append(self.sw.query(myrange))
-				found.append(self.se.query(myrange))
+			if myrange.contains(self.bound):
+				found.append(self.points)
 			else:
-				if myrange.contains(self.bound):
-					found.append(self.points)
-				else:
-					for p in self.points:
-						if myrange.contains(p):
-							found.append(p)
-			return found
-	```
+				for p in self.points:
+					if myrange.contains(p):
+						found.append(p)
+		return found
+```
 
 ![Quadtree Fig. 3](/images/quadtree2.png) 
 
