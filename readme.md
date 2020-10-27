@@ -130,7 +130,8 @@ As the name implies, this algorithm works with four ("quad") trees. Instead of l
 Let's go through the most important steps of the algorithm:
 1. In a first step, we will have to insert a given array of points, e.g. our coffee shops, into the Quadtree structure:
  	1. Define a maximum capacity `self.capacity`. The algorithm will recursively add points to a the quad that contains the point and the max. capacity will tell us how many points a quad is allowed to hold.
- 	2. Below is the function that inserts a point into a Quadtree class (for more details on how the class is built, check out the source code). It only executes if the point is contained in `self.bound`, which defines our quad boundary. If the point is contained in `self.bound`, we have two options: If the capacity is not yet reached and there are no subdivisions, we append it to the current quad. If the capacity is reached and the quad is not subdivided already, we subdivide the current quad into four new child quads. Here, we'll also have to redistribute the main quads' points to the children and "clean" the main quad. Then, we insert the point in the correct child quad. 
+ 	2. Below is the function that inserts a point into a Quadtree class (for more details on how the class is built, check out the source code). It only executes if the point is contained in `self.bound`, which defines our quad boundary. If the point is contained in `self.bound`, we have two options: If the capacity is not yet reached and there are no subdivisions, we append it to the current quad. If the capacity is reached and the quad is not subdivided already, we subdivide the current quad into four new child quads. Here, we'll also have to redistribute the main quads' points to the children and "clean" the main quad. Then, we insert the point in the correct child quad.
+ 	3. Repeat the above procedure for each point in your array. Fig 2.1 and 2.2 show two different ways of visualizing the entire insert procedure for 32 points and a capacity of 3.
 
 ```
 def insert(self, point):
@@ -152,12 +153,10 @@ if self.bound.contains(point):
 		self.se.insert(point)
 ```
 
-	3. Repeat the above procedure for each point in your array. Fig 2.1 and 2.2 show two different ways of visualizing the entire insert procedure for 32 points and a capacity of 3. 
 
 ![Quadtree Fig. 2.1 and 2.2](/images/quadtree1.png)
 
-2. Implement a query function to find points within a search range:
-	1. Now that we have inserted the points, we can query them. Fig. 3 illustrates an example of a rectangular search area in red. As you can see, the points within the search area can be on different quads, meaning that we will have to retrieve all points from different quads. Thus, our query function will input x, y, and size inputs for a rectangular search area that we call `myrange`. To find a point, we check if the search range intersects with the quad we are looking at. If it does not, we return an empty `found` array. If it does, we collect the points in our `found` array. To do this, we first check if the quad has children. If it does, we continue searching the children. If it doesn't, we append the points from the current quad. Note that there are two ways to append points in the current quad: If the `myrange` contains the quad, we append all points. Else, we will have to check each point on the quad to see if it overlaps.
+2. Implement a query function to find points within a search range: Now that we have inserted the points, we can query them. Fig. 3 illustrates an example of a rectangular search area in red. As you can see, the points within the search area can be on different quads, meaning that we will have to retrieve all points from different quads. Thus, our query function will input x, y, and size inputs for a rectangular search area that we call `myrange`. To find a point, we check if the search range intersects with the quad we are looking at. If it does not, we return an empty `found` array. If it does, we collect the points in our `found` array. To do this, we first check if the quad has children. If it does, we continue searching the children. If it doesn't, we append the points from the current quad. Note that there are two ways to append points in the current quad: If the `myrange` contains the quad, we append all points. Else, we will have to check each point on the quad to see if it overlaps.
 
 ```	
 def query(self, myrange):
