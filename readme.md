@@ -1,6 +1,6 @@
 # Algorithms toolbox - Your everyday spatial algorithm
 
-Note: this toolbox is meant to illustrate the principle behind methods that power your everyday GIS software rather than finding the least computationally intensive algorithm!
+*Note: this toolbox is meant to illustrate the principle behind methods that power your everyday GIS software rather than finding the least computationally intensive algorithm.*
 
 Index:  
 [Ramer-Douglas-Peucker](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/01_Ramer_Douglas_Peucker.py)  
@@ -8,6 +8,7 @@ Index:
 [Graham Scan Convex Hull](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/03_Graham_Scan.py)  
 [Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/04_Traveling_Salesperson_brute_nn.py)  
 [Quadtrees](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_Quadtrees_rtrees.py)
+[Rtrees]
 
 ## 1) Ramer-Douglas-Peucker algorithm
 ### What do we need it for and how does it work?
@@ -23,8 +24,9 @@ We can find the slope m by subtracting x_start from x_end and y_start from y_end
 From that, we'll be able to derive `b` by simply plugging in `m`, `x` or `x_start`, and `y` or `y_start`:  
 `b = y - mx` -> `b = y_start - m * x_start`
 
-Next, we'll have to transform the slope intercept notation of our baseline to the standard form ax + by + c = 0:  
-y = mx + b -> 0 = mx - (1)y - b
+Next, we'll have to transform the slope intercept notation of our baseline to the standard form 
+`ax + by + c = 0 -> y = mx + b -> 0 = mx - (1)y - b`
+
 
 Therefore:  
 `m = a  
