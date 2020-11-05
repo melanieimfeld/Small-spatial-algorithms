@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import cProfile
 
 #create a bunch or random points
-cities = spatialhelpers.Cities(100, width = 400, height = 400)
+cities = spatialhelpers.Cities(1000)
 
 #create a rectangle
 class Rectangle():
@@ -91,30 +91,25 @@ class Quadtree():
 
 
 '''This part will take care of inserting our points in the quadtree structure before we can return it'''
-boundary = Rectangle(20, 20, 100, 100)
-qt = Quadtree(boundary, 2)
+boundary = Rectangle(0, 0, 400, 400)
+qt = Quadtree(boundary, 3)
 
-#@spatialhelpers.timerfunc
+@spatialhelpers.timerfunc
 def insertPoints():
 	for city in cities:
 		qt.insert(city)
 
 
 '''Once inserted, we can query the points. This function only supports a rectangular range as query method, but we could also use nearest neighbors or a circular buffer range'''
-#@spatialhelpers.timerfunc
-def main():
-	range = Rectangle(0,0,100,100)
+@spatialhelpers.timerfunc
+def findPoints(range):
 	result = qt.query(range)
 	return result
 
-insertPoints()
+for i in range(1000):
+	insertPoints()
+	findPoints(Rectangle(50,50,50,50))
 
-if __name__ == '__main__':
-	cProfile.run(main())
-
-
-# plt.scatter(*zip(*cities)) #* -> reversed zip (unzip)
-# plt.savefig("quadtree.svg")
-# plt.show()
+#print(cities)
 
 

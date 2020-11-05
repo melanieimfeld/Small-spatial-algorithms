@@ -7,8 +7,8 @@ Index:
 [Haussdorf Distance](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/02_Haussdorf.py)  
 [Graham Scan Convex Hull](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/03_Graham_Scan.py)  
 [Traveling Salesperson](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/04_Traveling_Salesperson_brute_nn.py)  
-[Quadtrees](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_Quadtrees_rtrees.py)  
-Rtrees
+[Quadtrees](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_Quadtrees.py)  
+[Rtrees](https://github.com/melanieimfeld/Small-spatial-algorithms/blob/master/05_Rtrees.py)
 
 ## 1) Ramer-Douglas-Peucker algorithm
 ### What do we need it for and how does it work?

@@ -1,8 +1,11 @@
 import spatialhelpers
 from rtree import index
 
+
+print(__name__)
+
 idx = index.Index()
-cities = spatialhelpers.Cities(100)
+cities = spatialhelpers.Cities(1000)
 
 @spatialhelpers.timerfunc
 def insertPoints():
@@ -15,6 +18,9 @@ def findPointsRtree(range):
     result = list(idx.intersection(range))
     return result
 
+for i in range(10):
+	insertPoints()
+	findPointsRtree((50, 50, 50, 50))
 
-insertPoints()
-findPointsRtree((0, 0, 100, 100))
+
+#print(cities)
