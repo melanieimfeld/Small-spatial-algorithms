@@ -4,3 +4,5 @@ test.py
 /archive/*
 small_algorithms.sublime-project
 small_algorithms.sublime-workspace
+.replit
+.ipynb_checkpoints
