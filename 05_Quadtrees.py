@@ -49,17 +49,17 @@ class Quadtree():
 			return found
 		else: #else collect points
 			if self.isDivided: #and check if there are any children
-				found.append(self.nw.query(myrange))
-				found.append(self.ne.query(myrange))
-				found.append(self.sw.query(myrange))
-				found.append(self.se.query(myrange))
+				found.extend(self.nw.query(myrange))
+				found.extend(self.ne.query(myrange))
+				found.extend(self.sw.query(myrange))
+				found.extend(self.se.query(myrange))
 			else:
 				if myrange.contains(self.bound):
-					found.append(self.points)
+					found.extend(self.points)
 				else:
 					for p in self.points:
 						if myrange.contains(p):
-							found.append(p)
+							found.extend(p)
 
 			return found
 
